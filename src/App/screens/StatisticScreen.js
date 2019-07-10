@@ -23,7 +23,7 @@ const StatisticScreen = () => {
   return (
     <div style={{ flex: 1 }}>
       <DatePicker />
-      <SettingsTabs />
+      <DataFromStorage />
     </div>
   );
 };

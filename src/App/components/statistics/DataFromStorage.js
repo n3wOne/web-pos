@@ -141,7 +141,7 @@ class DataFromStorage extends React.PureComponent {
 
   render() {
     return (
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, marginTop: "15px" }}>
         <Button
           type="primary"
           block

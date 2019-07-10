@@ -39,6 +39,12 @@ const DatePickerr = (props) => {
       <RangePicker
         allowEmpty={[true, true]}
         onCalendarChange={calendarChange}
+        ranges={{
+          'Вчера': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Сегодня': [moment(), moment()],
+          'Эта неделя': [moment().startOf('week'), moment().endOf('week')],
+          'Этот месяц': [moment().startOf('month'), moment().endOf('month')],
+        }}
         onChange={onChange}
         value={dateRange}
         format={"DD.MM.YYYY"}

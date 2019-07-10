@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connectToStore } from "../../store/ConnectHolder";
 import { notify } from "../../utils";
+import {Button } from "antd";
 
 class Invoice extends React.Component {
   async createInvoice() {
@@ -39,16 +40,17 @@ class Invoice extends React.Component {
   render() {
     return (
       <div className={"invoice-buttons"}>
-        <button
+        <Button
           className={"button-clear-cart"}
           onClick={() => this.props.clearCart()}
         >
           {"Очистить корзину"}
-        </button>
-        <button
+        </Button>
+        <Button
+            type="primary"
           className={"button-create-invoice"}
           onClick={() => this.createInvoice()}
-        >{`Создать заказ (${this.props.cart.cartTotal})`}</button>
+        ><span className={"create-invoice-text"}>{`Создать заказ (${this.props.cart.cartTotal})`}</span></Button>
       </div>
     );
   }

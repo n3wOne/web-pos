@@ -19,6 +19,9 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  *{
+    font-size: 1.1rem;
+  }
 }
 
 .edit-item-wrapper{
@@ -111,8 +114,8 @@ body{
 }
 
 .bottom-navigation{
-  flex: 1;
-  height: 60px;
+  flex: 1.5;
+  //height: 60px;
   justify-content: space-around;
   display: flex;
   align-items: center;
@@ -124,13 +127,20 @@ body{
 
 .invoice-buttons{
   display: flex;
-  height: 30px;
+  flex: 1;
+  //height: 30px;
 }
 
 .button-create-invoice, .button-clear-cart{
     flex: 1;
-    height: 30px;
+    height: 100%;
     width: 100%;
 }
 
+.button-create-invoice.ant-btn{
+  line-height: 1.2rem;
+}
 
+.create-invoice-text{
+  font-size: 1.2rem;
+}
