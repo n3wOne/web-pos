@@ -1,0 +1,50 @@
+/* eslint react/prop-types: 0 */
+{
+  "extends": ["airbnb-base", "plugin:prettier/recommended", "plugin:react/recommended"],
+    "settings": {
+  "react": {
+    "version": "detect"
+  },
+  "import/resolver": {
+    "node": {
+      "extensions": [".js", ".jsx"]
+    }
+  }
+},
+  "plugins": [
+  "import",
+  "react",
+  "prettier"
+],
+    "parser": "babel-eslint",
+    "env": {
+  "browser": true,
+      "node": true,
+      "jest": true
+},
+  "globals": {
+  "shallow": true,
+      "configure": true,
+      "render": true,
+      "mount": true
+},
+  "rules": {
+    "react/prop-types": 0,
+  "linebreak-style": 0,
+      "eqeqeq": "off",
+      "curly": "error",
+      "import/prefer-default-export": 0,
+      "no-return-assign": 0,
+      "class-methods-use-this": "off",
+      "no-unused-vars": ["error", { "caughtErrorsIgnorePattern": "React" }],
+      "import/no-unresolved": "off",
+      "import/no-named-as-default": 0,
+      "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+      "import/no-cycle": 0,
+      "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+      "no-plusplus": "off",
+      "no-console": ["error", { "allow": ["warn", "error"] }],
+      "consistent-return": "off",
+      "camelcase": "off"
+}
+}
