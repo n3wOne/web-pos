@@ -24,6 +24,7 @@ const {
   SET_REMOTE_STORAGE,
   LOAD_REMOTE_STORAGE,
   LOAD_REMOTE_STORAGE_SUCCESS,
+  CHANGE_ORDER,
 } = storageConstants;
 
 const initialState = {
@@ -155,8 +156,15 @@ const setData = (state, payload) => {
   return { ...state, data };
 };
 
+const changeOrder = (state, payload) => {
+  localStorage.setItem(DATA_KEY, JSON.stringify(payload));
+  return { ...state, data: payload };
+}
+
 export function StorageReducer(state = initialState, action) {
   switch (action.type) {
+    case CHANGE_ORDER:
+      return changeOrder(state, action.payload);
     case REMOVE_INVOICE:
       return removeInvoice(state, action.payload.id, action.payload.fetchUrl);
     case REMOVE_ITEM:

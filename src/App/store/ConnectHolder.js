@@ -142,7 +142,13 @@ export const setData = (payload) => ({
   payload,
 });
 
+export const changeOrder = (payload) => ({
+  type: "CHANGE_ORDER",
+  payload,
+});
+
 const mapDispatchToProps = (dispatch) => ({
+  changeOrder: (payload) => dispatch(changeOrder(payload)),
   setData: (payload) => dispatch(setData(payload)),
   removeInvoice: (payload) => dispatch(removeInvoice(payload)),
   removeItem: (payload, fetchUrl) => dispatch(removeItem(payload, fetchUrl)),
