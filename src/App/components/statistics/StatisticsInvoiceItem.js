@@ -55,6 +55,7 @@ const StatisticsInvoiceItem = (props) => {
 
   const handleReleasePress = (event) => {
     clearTimeout(timer);
+    setPositionX({ initialX: 0, currentX: 0 });
   };
 
   return (
@@ -67,6 +68,7 @@ const StatisticsInvoiceItem = (props) => {
       onTouchEnd={handleReleasePress}
       onTouchMove={handleMove}
       onMouseMove={handleMove}
+      onBlur={()=>setShowDeleteButton(false)}
     >
       <div style={{ flex: 2 }}>{getDateString(date)}</div>
       <div style={{ flex: 3, flexDirection: "column" }}>

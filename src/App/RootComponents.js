@@ -94,6 +94,10 @@ class RootComponent extends React.Component {
   }
 
   render() {
+    const {
+      config: { totalBlock },
+    } = this.props;
+    // console.log(this.props.config);
     return (
       <div className={"root"}>
         <div className={"content"}>
@@ -101,7 +105,7 @@ class RootComponent extends React.Component {
         </div>
         <div className={"footer"}>
           <BottomNavigation />
-          <Invoice />
+          {!totalBlock && <Invoice />}
         </div>
       </div>
     );

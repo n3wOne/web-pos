@@ -4,6 +4,7 @@ const initialState = {
   fetchUrl: "http://vk.ferma-ivanovka.ru/api",
   // fetchUrl: "http://192.168.0.101",
   numColumns: 3,
+  totalBlock: false,
   errors: [],
 };
 

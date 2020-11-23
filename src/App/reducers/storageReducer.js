@@ -159,7 +159,7 @@ const setData = (state, payload) => {
 const changeOrder = (state, payload) => {
   localStorage.setItem(DATA_KEY, JSON.stringify(payload));
   return { ...state, data: payload };
-}
+};
 
 export function StorageReducer(state = initialState, action) {
   switch (action.type) {

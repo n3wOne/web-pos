@@ -47,7 +47,7 @@ body{
 }
 
 .root{
-  overflow: scroll;
+  overflow: auto;
   margin: 0 2rem;
 }
 
@@ -143,4 +143,71 @@ body{
 
 .create-invoice-text{
   font-size: 1.2rem;
+}
+
+
+.datepicker{
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.products{
+  display: flex;
+  flex-direction: row;
+}
+
+
+.total-block{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  flex-basis: 33%;
+  margin-left: 20px;
+  padding: 5px;
+}
+
+.total-row{
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  padding: 5px;
+  font-size: 1rem;
+}
+
+.total-row-name{
+  flex: 1;
+  font-weight: 500;
+}
+
+.total-row-price{
+  margin: 0 15px;
+  font-size: 0.9rem;
+}
+
+.total-row-total{
+  margin-right: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  &:after{
+    content: " руб.";
+  }
+}
+
+.total-row-remove{
+  flex: unset;
+}
+
+
+.total{
+  font-size: 1.25rem;
+  margin: 10px 0;
+  font-weight: 500;
+  &:after{
+    content: " руб.";
+  }
 }

@@ -58,7 +58,12 @@ class StorageDataScreen extends React.Component {
 
     return (
       <div className={"storage-data-wrapper"}>
-        <SortableList pressDelay={200} data={data} items={data} onSortEnd={this.onSortEnd} />
+        <SortableList
+          pressDelay={200}
+          data={data}
+          items={data}
+          onSortEnd={this.onSortEnd}
+        />
         <Button title={"Добавить"} icon={<PlusCircleOutlined />}>
           <Link
             to={{

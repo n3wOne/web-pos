@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connectToStore } from "../store/ConnectHolder";
 import Item from "../components/home-screen-components/Item";
 import data from "../store/data";
+import TotalForm from "../components/home-screen-components/TotalForm";
 
 const StyledDiv = styled.div`
   ${({ numColumns }) => `
@@ -40,11 +41,27 @@ const HomeScreen = (props) => {
       )
     );
   };
-  const { data: newData } = props;
+  const {
+    data: newData,
+    cartItems,
+    cartTotal,
+    removeProductFromCart,
+    config: { totalBlock },
+  } = props;
+  console.log(totalBlock)
   return !newData ? (
     <div>Loading...</div>
   ) : (
-    <div className={"products-container"}>{renderItem(newData)}</div>
+    <div className={"products"}>
+      <div className={"products-container"}>{renderItem(newData)}</div>
+      {totalBlock && (
+        <TotalForm
+          removeProductFromCart={removeProductFromCart}
+          cartItems={cartItems}
+          cartTotal={cartTotal}
+        />
+      )}
+    </div>
   );
 };
 

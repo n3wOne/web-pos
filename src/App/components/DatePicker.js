@@ -35,15 +35,16 @@ const DatePickerr = (props) => {
   const onChange = ([start, end]) => !start && !end && changeDateRange(null);
 
   return (
-    <div>
+    <div className={"datepicker"}>
+      <span style={{ marginRight: "10px" }}>Выбрать отчетный период: </span>
       <RangePicker
         allowEmpty={[true, true]}
         onCalendarChange={calendarChange}
         ranges={{
-          'Вчера': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Сегодня': [moment(), moment()],
-          'Эта неделя': [moment().startOf('week'), moment().endOf('week')],
-          'Этот месяц': [moment().startOf('month'), moment().endOf('month')],
+          Вчера: [moment().subtract(1, "days"), moment().subtract(1, "days")],
+          Сегодня: [moment(), moment()],
+          "Эта неделя": [moment().startOf("week"), moment().endOf("week")],
+          "Этот месяц": [moment().startOf("month"), moment().endOf("month")],
         }}
         onChange={onChange}
         value={dateRange}

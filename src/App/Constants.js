@@ -5,6 +5,7 @@ export const CONFIG_KEY = "@config";
 export const ConfigConstants = {
   NUMBER_OF_COLUMNS: "Количество колонок",
   FETCH_URL: "Api URL",
+  TOTAL_BLOCK: "Показать заказ"
 };
 
 export const storageConstants = {
