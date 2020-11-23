@@ -84,7 +84,7 @@ body{
   text-align: center;
   background: #fff;
   border: 1px solid #ff7a10;
-  max-height: 35px;
+  height: 60px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -103,7 +103,9 @@ body{
 
 .item-count-input{
   flex: 1.75;
+  height: 100%;
   & > input{
+    height: 100%;
     text-align: center;
     border: 0;
     border-left: 1px solid #ff7a10;
@@ -209,5 +211,27 @@ body{
   font-weight: 500;
   &:after{
     content: " руб.";
+  }
+}
+
+
+@media screen and (max-width: 500px){
+  .item-button-wrapper{
+    max-height: 35px;
+  }
+  .root{
+    overflow: unset;
+  }
+}
+
+@media screen and (max-width: 800px){
+  .products{
+    flex-direction: column;
+  }
+  .total-block{
+    order: 1;
+  }
+  .products-container{
+    order: 2;
   }
 }
