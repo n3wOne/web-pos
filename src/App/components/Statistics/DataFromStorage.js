@@ -30,10 +30,10 @@ class DataFromStorage extends React.PureComponent {
     const { startDate, endDate } = this.props;
     return data.filter(([key, value]) => {
       if (startDate && endDate) {
-        const minDate = moment(startDate).date();
-        const maxDate = moment(endDate).date();
-        const currentDate = moment(key).date();
-        return currentDate >= minDate && currentDate <= maxDate;
+        // const minDate = startDate;
+        // const maxDate = endDate;
+        // const currentDate = key;
+        return key >= startDate && key <= endDate;
       }
       return [key, value];
     });
@@ -100,8 +100,8 @@ class DataFromStorage extends React.PureComponent {
     if (!storage.size > 0) {
       return;
     }
-    return this.filterByDate([...storage.entries()])
-      .sort(([k, v], [k1, v1]) => parseFloat(k) - parseFloat(k1))
+    const filtered = this.filterByDate([...storage.entries()]);
+    return filtered.sort(([k, v], [k1, v1]) => parseFloat(k) - parseFloat(k1))
       .reverse()
       .map(([key, value]) => {
         if (!value) {

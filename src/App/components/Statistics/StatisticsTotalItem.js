@@ -8,7 +8,7 @@ const StatisticsTotalItem = ({ data, value }) => {
       style={{ flex: 1, flexDirection: "row" }}
     >
       <div style={{ flex: 3 }}>{data}</div>
-      <div style={{ flex: 1 }}>{value.count}</div>
+      <div style={{ flex: 1 }}>{(value.count * 1000).toFixed() / 1000}</div>
       <div style={{ flex: 1 }}>{value.total}</div>
     </div>
   );

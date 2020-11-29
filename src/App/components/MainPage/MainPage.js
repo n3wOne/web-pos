@@ -1,19 +1,10 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { connectToStore } from "../store/ConnectHolder";
-import Item from "../components/home-screen-components/Item";
-import data from "../store/data";
-import TotalForm from "../components/home-screen-components/TotalForm";
+import React from "react";
+import { connectToStore } from "../../store/ConnectHolder";
+import Item from "./Item";
+// import data from "../../store/data";
+import TotalForm from "./TotalForm";
 
-const StyledDiv = styled.div`
-  ${({ numColumns }) => `
-    flex: 1;
-    flex-basis: calc(${100 / numColumns}% - 1rem);
-  `}
-`;
-// const numColumns = 3;
-
-const HomeScreen = (props) => {
+const MainPage = (props) => {
   const renderItem = (data) => {
     const {
       addProductToCart,
@@ -48,7 +39,6 @@ const HomeScreen = (props) => {
     removeProductFromCart,
     config: { totalBlock },
   } = props;
-  console.log(totalBlock)
   return !newData ? (
     <div>Loading...</div>
   ) : (
@@ -65,9 +55,9 @@ const HomeScreen = (props) => {
   );
 };
 
-HomeScreen.defaultProps = {
+MainPage.defaultProps = {
   config: {
     numColumns: 3,
   },
 };
-export default connectToStore(HomeScreen);
+export default connectToStore(MainPage);

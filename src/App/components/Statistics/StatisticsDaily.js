@@ -30,7 +30,7 @@ class StatisticsDaily extends React.Component {
   totalStatistics() {
     const {
       cart: { invoices },
-      removeInvoice
+      removeInvoice,
     } = this.props;
 
     const data = new Map([]);
@@ -67,11 +67,18 @@ class StatisticsDaily extends React.Component {
   invoicesStatistics() {
     const {
       cart: { invoices },
-      removeInvoice
+      removeInvoice,
     } = this.props;
 
     const data = [...invoices.entries()].map(([key, item]) => {
-      return <StatisticsInvoiceItem removeInvoice={removeInvoice} key={`${key}`} date={key} item={item} />;
+      return (
+        <StatisticsInvoiceItem
+          removeInvoice={removeInvoice}
+          key={`${key}`}
+          date={key}
+          item={item}
+        />
+      );
     });
     return <div style={{ flex: 1, flexDirection: "column" }}>{data}</div>;
   }

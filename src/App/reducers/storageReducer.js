@@ -1,14 +1,6 @@
-// import AsyncStorage from "@react-native-community/async-storage";
-
 import { message } from "antd";
 import { DATA_KEY, INVOICES_KEY, storageConstants } from "../Constants";
-import {
-  alertEvent,
-  getDateString,
-  notify,
-  storageToJSON,
-  storageToMap,
-} from "../utils";
+import { getDateString, notify, storageToJSON, storageToMap } from "../utils";
 
 const {
   SET_DATA,
@@ -18,12 +10,7 @@ const {
   SET_STORAGE_DATA,
   SET_STORAGE_DATA_FAILED,
   SET_LOCAL_STORAGE,
-  LOAD_LOCAL_STORAGE,
-  LOAD_LOCAL_STORAGE_SUCCESS,
-  LOAD_ERROR,
   SET_REMOTE_STORAGE,
-  LOAD_REMOTE_STORAGE,
-  LOAD_REMOTE_STORAGE_SUCCESS,
   CHANGE_ORDER,
 } = storageConstants;
 
@@ -169,12 +156,6 @@ export function StorageReducer(state = initialState, action) {
       return removeInvoice(state, action.payload.id, action.payload.fetchUrl);
     case REMOVE_ITEM:
       return removeItem(state, action.payload.id, action.fetchUrl);
-    // return {
-    //   ...state,
-    //   data: state.data.filter(
-    //     (item) => item && item.id && item.id !== action.payload.id
-    //   ),
-    // };
     case SET_DATA:
       return setData(state, action.payload);
     case SAVE_EDIT_DATA:
@@ -185,12 +166,6 @@ export function StorageReducer(state = initialState, action) {
       return { ...state, errors: [...action.payload] };
     case SET_LOCAL_STORAGE:
       return storeData(state, action.payload);
-    case LOAD_LOCAL_STORAGE:
-      return { ...state };
-    case LOAD_LOCAL_STORAGE_SUCCESS:
-      return;
-    case LOAD_ERROR:
-      return;
     case SET_REMOTE_STORAGE:
       return {
         ...state,
@@ -198,10 +173,6 @@ export function StorageReducer(state = initialState, action) {
           action.payload.map(([key, value]) => [+key, value.data])
         ),
       };
-    case LOAD_REMOTE_STORAGE:
-      return;
-    case LOAD_REMOTE_STORAGE_SUCCESS:
-      return;
     default:
       return { ...state };
   }

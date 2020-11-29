@@ -10,7 +10,11 @@ import rootReducer from "../reducers";
 export const history = createBrowserHistory();
 
 const sagaMiddleware = createSagaMiddleware();
-const middlewares = [routerMiddleware(history), logger, sagaMiddleware];
+const middlewares = [
+  routerMiddleware(history),
+  // logger,
+  sagaMiddleware,
+];
 
 const composedEnhancers = compose(applyMiddleware(...middlewares));
 

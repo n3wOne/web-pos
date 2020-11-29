@@ -1,6 +1,5 @@
-// Imports: Dependencies
 import { combineReducers } from "redux";
-// Imports: Reducers
+
 import { connectRouter } from "connected-react-router";
 import { CartReducer } from "./rootReducer";
 import { StorageReducer } from "./storageReducer";
@@ -15,5 +14,5 @@ const rootReducer = (history) =>
     config: ConfigReducer,
     router: connectRouter(history),
   });
-// Exports
+
 export default rootReducer;

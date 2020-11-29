@@ -1,46 +1,20 @@
 import {
   put,
-  takeEvery,
   all,
   call,
   select,
   takeLatest,
 } from "redux-saga/effects";
 import data from "../store/data";
-import { CONFIG_KEY } from "../Constants";
+import {
+  LOAD_CONFIG,
+  LOAD_CONFIG_SUCCESS,
+  LOAD_DEFAULT_CONFIG,
+  SET_CONFIG,
+} from "./configReducer";
 
-const saveEditedData = async (state, action) => {
-  const newItem = action.payload;
-  const data = [...state.data];
-  const editItem = data.find((item) => item.id === newItem.id);
-  let newData = [];
-  if (editItem) {
-    newData = data.map((i) => (i.id === editItem.id ? editItem : i));
-  } else {
-    newData = data.push(newItem);
-  }
-  try {
-    localStorage.setItem("@data", JSON.stringify(newData));
-  } catch (e) {
-    console.log("Save error", e);
-  }
-
-  // const newState = state.data.map((item) => {
-  //   if (item.id === action.payload.id) {
-  //     return action.payload;
-  //   }
-  //   return item;
-  // });
-  // const foundData = state.data.find((item) => item.id === action.payload.id);
-  // const newData = new Map(newState);
-  // newData.set(action.payload.id, action.payload);
-  // const newDataArray = [...newData.values()];
-  // try {
-  //   localStorage.setItem("@data", JSON.stringify(newDataArray));
-  // } catch (e) {
-  //   console.log("Save error", e);
-  // }
-};
+export const SAVE_EDIT = "SAVE_EDIT";
+export const LOAD_DATA_FROM_STORAGE_START = "LOAD_DATA_FROM_STORAGE_START";
 
 const getNewData = async (state, action) => {
   const newItem = action.payload;
@@ -107,8 +81,6 @@ function* setConfig(action) {
   try {
     yield localStorage.setItem("@config", JSON.stringify(action.payload));
     yield put({ type: "SAVE_CONFIG_SUCCESS", payload: action.payload });
-    // const storage = yield AsyncStorage.getItem("@config");
-    // console.log(JSON.parse(storage));
   } catch (e) {
     console.error("Save config failed", e);
     yield put({ type: "SAVE_CONFIG_FAILED", e });
@@ -120,12 +92,12 @@ function* loadConfig() {
     const storageData = localStorage.getItem("@config");
     if (!storageData) {
       yield put({
-        type: "LOAD_DEFAULT_CONFIG",
+        type: LOAD_DEFAULT_CONFIG,
       });
       return loadConfig();
     }
     yield put({
-      type: "LOAD_CONFIG_SUCCESS",
+      type: LOAD_CONFIG_SUCCESS,
       payload: JSON.parse(storageData),
     });
   } catch (e) {
@@ -135,28 +107,27 @@ function* loadConfig() {
 }
 
 export function* watchSaveConfig() {
-  yield takeLatest("SET_CONFIG", setConfig);
+  yield takeLatest(SET_CONFIG, setConfig);
 }
 
 export function* watchLoadConfigFromStorage() {
-  yield takeLatest("LOAD_CONFIG", loadConfig);
+  yield takeLatest(LOAD_CONFIG, loadConfig);
 }
 
 export function* watchSaveData() {
-  yield takeLatest("SAVE_EDIT", saveEdit);
+  yield takeLatest(SAVE_EDIT, saveEdit);
 }
 
 export function* watchLoadDataFromStorage() {
-  yield takeLatest("LOAD_DATA_FROM_STORAGE_START", loadDataFromStore);
+  yield takeLatest(LOAD_DATA_FROM_STORAGE_START, loadDataFromStore);
 }
 
 export function* watchLoadDefaultConfig() {
-  yield takeLatest("LOAD_DEFAULT_CONFIG", loadConfig);
+  yield takeLatest(LOAD_DEFAULT_CONFIG, loadConfig);
 }
 
 export default function* rootSaga() {
   yield all([
-    // loadDataFromStore(),
     watchLoadDataFromStorage(),
     watchSaveData(),
     watchSaveConfig(),

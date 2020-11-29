@@ -14,7 +14,12 @@ const Row = ({ item, removeProductFromCart }) => {
         {price} х {count}
       </div>
       <div className={"total-row-total"}>{price * count}</div>
-      <Button className={"total-row-remove"} onClick={removeItem} type="primary" icon={<DeleteOutlined />} />
+      <Button
+        className={"total-row-remove"}
+        onClick={removeItem}
+        type="primary"
+        icon={<DeleteOutlined />}
+      />
     </div>
   );
 };

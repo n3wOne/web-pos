@@ -65,7 +65,6 @@ const Config = (props) => {
         <Input
           name={"numColumns"}
           type={"number"}
-          autoComplete={false}
           defaultValue={props.numColumns.toString()}
           onChange={handleChange}
           onBlur={saveConfig}
@@ -83,8 +82,6 @@ const Config = (props) => {
           type={"checkbox"}
           defaultChecked={props.totalBlock}
           onChange={handleChange}
-          // onBlur={saveConfig}
-          // onClick={saveConfig}
         />
       </div>
     </div>

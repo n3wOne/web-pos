@@ -75,7 +75,6 @@ export default class NumericInput extends Component {
             onKeyPress={this.onKeyPress}
             onBlur={this.onBlur}
             type={"number"}
-            autoComplete={false}
           />
         </div>
         <PlusOutlined

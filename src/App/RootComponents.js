@@ -1,13 +1,13 @@
 import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 import { connectToStore } from "./store/ConnectHolder";
-import HomeScreen from "./screens/HomeScreen";
-import Invoice from "./components/home-screen-components/Invoice";
-import StatisticScreen from "./screens/StatisticScreen";
-import SettingsScreen from "./screens/SettingsScreen";
-import EditStorageData from "./screens/StorageDataScreen";
+import HomeScreen from "./components/MainPage/MainPage";
+import Invoice from "./components/MainPage/Invoice";
+import StatisticScreen from "./components/Statistics/Statistics";
+import SettingsScreen from "./components/Settings/Settings";
+import EditStorageData from "./components/Storage/Storage";
 import BottomNavigation from "./components/BottomNavigation";
-import EditItem from "./components/EditItem";
+import EditItem from "./components/Storage/EditItem";
 import { INVOICES_KEY } from "./Constants";
 import { storageToJSON, storageToMap } from "./utils";
 
@@ -97,7 +97,6 @@ class RootComponent extends React.Component {
     const {
       config: { totalBlock },
     } = this.props;
-    // console.log(this.props.config);
     return (
       <div className={"root"}>
         <div className={"content"}>

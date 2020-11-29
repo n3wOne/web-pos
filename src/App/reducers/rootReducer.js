@@ -1,6 +1,5 @@
 // import AsyncStorage from "@react-native-community/async-storage";
 import moment from "moment";
-import { notification } from "antd";
 import { dnow, notify } from "../utils";
 import { INVOICES_KEY } from "../Constants";
 
@@ -131,6 +130,16 @@ const storeData = () => async (date, payload, connected, fetchUrl) => {
   }
 };
 
+const loadProduct = (state, id) => {
+  return { ...state, product: state.productsList.get(id) };
+};
+
+const productsToMap = (products) => {
+  const productsList = new Map([]);
+  products.forEach((product) => productsList.set(product.id, product));
+  return productsList;
+};
+
 export function CartReducer(state = initialState, action) {
   switch (action.type) {
     case INVOICE:
@@ -173,16 +182,6 @@ export function CartReducer(state = initialState, action) {
       return state;
   }
 }
-
-const loadProduct = (state, id) => {
-  return { ...state, product: state.productsList.get(id) };
-};
-
-const productsToMap = (products) => {
-  const productsList = new Map([]);
-  products.forEach((product) => productsList.set(product.id, product));
-  return productsList;
-};
 
 // export function ProductReducer(state = initialState, action) {
 //   switch (action.type) {

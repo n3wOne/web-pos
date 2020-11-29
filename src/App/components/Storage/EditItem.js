@@ -1,18 +1,14 @@
 import React, { useState } from "react";
-import {
-  Input,
-  InputNumber,
-  Button,
-  Tooltip,
-  notification,
-  message,
-} from "antd";
+import { Input, Button, notification, Upload } from "antd";
 import {
   CloseOutlined,
   CheckOutlined,
   DeleteOutlined,
+  UploadOutlined,
 } from "@ant-design/icons";
-import { connectToStore } from "../store/ConnectHolder";
+import Resizer from "react-image-file-resizer";
+import { connectToStore } from "../../store/ConnectHolder";
+// import Uploader from "./Uploader";
 
 const EditItem = (props) => {
   const { newId } = props.location.state;
@@ -27,6 +23,42 @@ const EditItem = (props) => {
 
   const [item, setItem] = useState(initialState);
   const { saveEdit, removeItem } = props;
+
+  const resizeFile = (file) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        300,
+        300,
+        "JPEG",
+        80,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        "blob"
+      );
+    }).then((res) => setItem({ ...item, url: res }));
+  // .then((res) => console.log(res));
+
+  const uploaderProps = {
+    action: "http://localhost/upload.php",
+    listType: "picture",
+    transformFile(file) {
+      return resizeFile(file);
+    },
+  };
+
+  const Uploader = () => {
+    return (
+      <>
+        <Upload {...uploaderProps}>
+          <Button icon={<UploadOutlined />}>Upload</Button>
+        </Upload>
+      </>
+    );
+  };
+
   const onChange = (event) => {
     const {
       target: { name, value },
@@ -61,7 +93,6 @@ const EditItem = (props) => {
   return (
     <div className={"edit-item-wrapper"}>
       <Input
-        autoComplete={false}
         disabled={!!newId}
         placeholder={"id"}
         className={"edit-item-input"}
@@ -71,7 +102,6 @@ const EditItem = (props) => {
         onChange={onChange}
       />
       <Input
-        autoComplete={false}
         placeholder={"Название"}
         className={"edit-item-input"}
         key={"name"}
@@ -80,7 +110,6 @@ const EditItem = (props) => {
         onChange={onChange}
       />
       <Input
-        autoComplete={false}
         placeholder={"Цена"}
         type={"number"}
         className={"edit-item-input"}
@@ -97,6 +126,7 @@ const EditItem = (props) => {
         name={"description"}
         onChange={onChange}
       />
+      <Uploader />
       <div className={"edit-item-buttons"}>
         <Button onClick={cancel} type="primary" danger icon={<CloseOutlined />}>
           Отменить

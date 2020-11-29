@@ -2,16 +2,12 @@ import { connect } from "react-redux";
 import {
   REMOVE_ITEM_FROM_CART,
   SET_CART_ITEM_COUNT,
-  LOAD_CATEGORIES,
-  LOAD_PRODUCT_DETAILS,
   CLEAR_CART,
   ADD_TO_CART_ITEM,
-  LOAD_PRODUCT_LIST_SUCCESS,
-  LOAD_PRODUCT_DETAILS_SUCCESS,
-  FILTER_ITEMS,
-  LOAD_CATEGORIES_SUCCESS,
-  LOAD_PRODUCT_LIST,
+  INVOICE,
 } from "../reducers/rootReducer";
+import { storageConstants } from "../Constants";
+import { LOAD_DATA_FROM_STORAGE_START } from "../reducers/sagas";
 
 const mapStateToProps = (state) => {
   const { cart, storage, config } = state;
@@ -47,36 +43,17 @@ export const removeItem = (payload, fetchUrl) => ({
   fetchUrl,
 });
 
-export const showModal = (payload) => ({
-  type: "SHOW_MODAL",
-  payload,
-});
-
-export const hideModal = () => ({
-  type: "HIDE_MODAL",
-});
-
 export const loadDataFromStore = () => ({
-  type: "LOAD_DATA_FROM_STORAGE_START",
+  type: LOAD_DATA_FROM_STORAGE_START,
 });
 
 export const setLocalStorage = (payload) => ({
-  type: "SET_LOCAL_STORAGE",
+  type: storageConstants.SET_LOCAL_STORAGE,
   payload,
 });
 
 export const setRemoteStorage = (payload) => ({
-  type: "SET_REMOTE_STORAGE",
-  payload,
-});
-
-export const getLocalStorage = (payload) => ({
-  type: "LOAD_LOCAL_STORAGE",
-  payload,
-});
-
-export const getRemoteStorage = (payload) => ({
-  type: "LOAD_REMOTE_STORAGE",
+  type: storageConstants.SET_REMOTE_STORAGE,
   payload,
 });
 
@@ -95,55 +72,27 @@ export const addProductToCart = (payload) => ({
   payload,
 });
 
-export const filterItems = (payload) => ({
-  type: FILTER_ITEMS,
-  payload,
-});
 export const clearCart = () => ({ type: CLEAR_CART });
 
-export const loadProductListStart = () => ({
-  type: LOAD_PRODUCT_LIST,
-});
-
-export const loadProductListSuccess = (payload) => ({
-  type: LOAD_PRODUCT_LIST_SUCCESS,
-  payload,
-});
-
-export const loadProductDetails = (payload) => ({
-  type: LOAD_PRODUCT_DETAILS,
-  payload,
-});
-
-export const loadCategories = (payload) => ({
-  type: LOAD_CATEGORIES,
-  payload,
-});
-
-export const loadCategoriesSuccess = (payload) => ({
-  type: LOAD_CATEGORIES_SUCCESS,
-  payload,
-});
-
 export const removeInvoice = (payload) => ({
-  type: "REMOVE_INVOICE",
+  type: storageConstants.REMOVE_INVOICE,
   payload,
 });
 
 export const newInvoice = (payload, connected, fetchUrl) => ({
-  type: "INVOICE",
+  type: INVOICE,
   payload,
   connected,
   fetchUrl,
 });
 
 export const setData = (payload) => ({
-  type: "SET_DATA",
+  type: storageConstants.SET_DATA,
   payload,
 });
 
 export const changeOrder = (payload) => ({
-  type: "CHANGE_ORDER",
+  type: storageConstants.CHANGE_ORDER,
   payload,
 });
 
@@ -153,24 +102,15 @@ const mapDispatchToProps = (dispatch) => ({
   removeInvoice: (payload) => dispatch(removeInvoice(payload)),
   removeItem: (payload, fetchUrl) => dispatch(removeItem(payload, fetchUrl)),
   saveEdit: (payload) => dispatch(saveEdit(payload)),
-  showEditModal: (payload) => dispatch(showModal(payload)),
-  hideEditModal: () => dispatch(hideModal()),
   loadDataFromStore: () => dispatch(loadDataFromStore()),
   setLocalStorage: (payload) => dispatch(setLocalStorage(payload)),
   setRemoteStorage: (payload) => dispatch(setRemoteStorage(payload)),
-  getLocalStorage: () => dispatch(getLocalStorage()),
-  getRemoteStorage: () => dispatch(getRemoteStorage()),
   newInvoice: (payload, connected, fetchUrl) =>
     dispatch(newInvoice(payload, connected, fetchUrl)),
   removeProductFromCart: (payload) => dispatch(removeProductFromCart(payload)),
   setCartItemCount: (payload) => dispatch(setCartItemCount(payload)),
   addProductToCart: (payload) => dispatch(addProductToCart(payload)),
   clearCart: () => dispatch(clearCart()),
-  loadCategories: () => dispatch(loadCategories()),
-  loadCategoriesSuccess: (payload) => dispatch(loadCategoriesSuccess(payload)),
-  loadProductListStart: () => dispatch(loadProductListStart()),
-  loadProductListSuccess: (payload) =>
-    dispatch(loadProductListSuccess(payload)),
   setConfig: (payload) => dispatch({ type: "SET_CONFIG", payload }),
   loadConfig: () => dispatch({ type: "LOAD_CONFIG" }),
 });
@@ -181,11 +121,8 @@ const mapConfigDispatchToProps = (dispatch) => ({
 });
 
 const mapDatePickerDispatch = (dispatch) => ({
-  setDate: (payload) => dispatch({ type: "SET_DATE", payload }),
   setStartDate: (payload) => dispatch({ type: "SET_START_DATE", payload }),
   setEndDate: (payload) => dispatch({ type: "SET_END_DATE", payload }),
-  setMaxDate: (payload) => dispatch({ type: "SET_MAX_DATE", payload }),
-  setMinDate: (payload) => dispatch({ type: "SET_MIN_DATE", payload }),
 });
 
 export const connectToStore = (WrappedComponent) =>

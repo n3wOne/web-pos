@@ -1,9 +1,9 @@
 import React from "react";
 import { Button, Popconfirm, message } from "antd";
-import Config from "../components/settings-screen-components/Config";
-import { clearStorage, notify } from "../utils";
-import { connectToStore } from "../store/ConnectHolder";
-import { DATA_KEY } from "../Constants";
+import Config from "./Config";
+import { clearStorage, notify } from "../../utils";
+import { connectToStore } from "../../store/ConnectHolder";
+import { DATA_KEY } from "../../Constants";
 
 const GetAllProductsButton = (props) => {
   const { onClick } = props;
@@ -35,7 +35,7 @@ const GetAllProductsButton = (props) => {
   );
 };
 
-class SettingsScreen extends React.Component {
+class Settings extends React.Component {
   async fetchAllProducts() {
     const products = localStorage.getItem(DATA_KEY);
     try {
@@ -135,4 +135,4 @@ class SettingsScreen extends React.Component {
     );
   }
 }
-export default connectToStore(SettingsScreen);
+export default connectToStore(Settings);

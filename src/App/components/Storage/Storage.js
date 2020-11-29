@@ -4,7 +4,7 @@ import { Button } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
 import arrayMove from "array-move";
-import { connectToStore } from "../store/ConnectHolder";
+import { connectToStore } from "../../store/ConnectHolder";
 
 const SortableItem = SortableElement(({ item }) => {
   return (
@@ -42,7 +42,7 @@ const SortableList = SortableContainer(({ items, data, ...props }) => {
   );
 });
 
-class StorageDataScreen extends React.Component {
+class Storage extends React.Component {
   onSortEnd = ({ oldIndex, newIndex }) => {
     const { changeOrder } = this.props;
     const newOrder = arrayMove(this.props.data, oldIndex, newIndex);
@@ -78,4 +78,4 @@ class StorageDataScreen extends React.Component {
     );
   }
 }
-export default connectToStore(StorageDataScreen);
+export default connectToStore(Storage);
