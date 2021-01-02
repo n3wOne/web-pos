@@ -5,6 +5,7 @@ import {
   CLEAR_CART,
   ADD_TO_CART_ITEM,
   INVOICE,
+  SET_CART_ITEM,
 } from "../reducers/rootReducer";
 import { storageConstants } from "../Constants";
 import { LOAD_DATA_FROM_STORAGE_START } from "../reducers/sagas";
@@ -67,6 +68,11 @@ export const setCartItemCount = (payload) => ({
   payload,
 });
 
+export const setCartItem = (payload) => ({
+  type: SET_CART_ITEM,
+  payload,
+});
+
 export const addProductToCart = (payload) => ({
   type: ADD_TO_CART_ITEM,
   payload,
@@ -109,6 +115,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(newInvoice(payload, connected, fetchUrl)),
   removeProductFromCart: (payload) => dispatch(removeProductFromCart(payload)),
   setCartItemCount: (payload) => dispatch(setCartItemCount(payload)),
+  setCartItem: (payload) => dispatch(setCartItem(payload)),
   addProductToCart: (payload) => dispatch(addProductToCart(payload)),
   clearCart: () => dispatch(clearCart()),
   setConfig: (payload) => dispatch({ type: "SET_CONFIG", payload }),

@@ -37,6 +37,7 @@ const MainPage = (props) => {
     cartItems,
     cartTotal,
     removeProductFromCart,
+    setCartItem,
     config: { totalBlock },
   } = props;
   return !newData ? (
@@ -46,6 +47,7 @@ const MainPage = (props) => {
       <div className={"products-container"}>{renderItem(newData)}</div>
       {totalBlock && (
         <TotalForm
+          setCartItem={setCartItem}
           removeProductFromCart={removeProductFromCart}
           cartItems={cartItems}
           cartTotal={cartTotal}

@@ -15,6 +15,7 @@ export const SET_CART_ITEM_COUNT = "SET_CART_ITEM_COUNT";
 export const LOAD_CATEGORIES = "LOAD_CATEGORIES";
 export const LOAD_CATEGORIES_SUCCESS = "LOAD_CATEGORIES_SUCCESS";
 export const INVOICE = "INVOICE";
+export const SET_CART_ITEM = "SET_CART_ITEM";
 
 const invoices = {
   invoices: new Map([]),
@@ -63,6 +64,16 @@ const addToCart = (state, payload) => {
 const removeProductFromCart = (state, payload) => {
   state.cartItems.delete(payload);
   return { ...state };
+};
+
+const setCartItem = (state, payload) => {
+  const newCartItems = new Map([...state.cartItems]).set(payload.id, {
+    ...payload,
+  });
+  return {
+    ...state,
+    cartItems: newCartItems,
+  };
 };
 
 const setCartItemCount = (state, payload) => {
@@ -151,6 +162,8 @@ export function CartReducer(state = initialState, action) {
       return newCartState(addToCart(state, action.payload));
     case REMOVE_ITEM_FROM_CART:
       return newCartState(removeProductFromCart(state, action.payload));
+    case SET_CART_ITEM:
+      return newCartState(setCartItem(state, action.payload));
     case SET_CART_ITEM_COUNT:
       return newCartState(setCartItemCount(state, action.payload));
     case CLEAR_CART:

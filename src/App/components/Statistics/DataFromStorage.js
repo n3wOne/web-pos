@@ -26,6 +26,16 @@ class DataFromStorage extends React.PureComponent {
     this.getTotal();
   }
 
+  getDate = (dateTimeString, end = false) => {
+    const date = new Date(dateTimeString);
+    const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+    const month =
+      date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+    const year = date.getFullYear();
+    const dateString = `${year}-${month}-${end ? +day + 1 : day}`;
+    return +new Date(Date.parse(dateString));
+  };
+
   filterByDate = (data) => {
     const { startDate, endDate } = this.props;
     return data.filter(([key, value]) => {
@@ -33,7 +43,9 @@ class DataFromStorage extends React.PureComponent {
         // const minDate = startDate;
         // const maxDate = endDate;
         // const currentDate = key;
-        return key >= startDate && key <= endDate;
+        return (
+          key >= this.getDate(startDate) && key <= this.getDate(endDate, true)
+        );
       }
       return [key, value];
     });
@@ -101,7 +113,8 @@ class DataFromStorage extends React.PureComponent {
       return;
     }
     const filtered = this.filterByDate([...storage.entries()]);
-    return filtered.sort(([k, v], [k1, v1]) => parseFloat(k) - parseFloat(k1))
+    return filtered
+      .sort(([k, v], [k1, v1]) => parseFloat(k) - parseFloat(k1))
       .reverse()
       .map(([key, value]) => {
         if (!value) {
