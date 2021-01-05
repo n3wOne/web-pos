@@ -10,6 +10,7 @@ import BottomNavigation from "./components/BottomNavigation";
 import EditItem from "./components/Storage/EditItem";
 import { INVOICES_KEY } from "./Constants";
 import { storageToJSON, storageToMap } from "./utils";
+import Bath from "./components/Bath/Bath";
 
 function Routes() {
   return (
@@ -24,6 +25,9 @@ function Routes() {
       </Route>
       <Route exact path={"/editstorage"}>
         <EditStorageData />
+      </Route>
+      <Route exact path={"/bath"}>
+        <Bath />
       </Route>
       <Route exact path={"/settings"}>
         <SettingsScreen />

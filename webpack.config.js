@@ -13,7 +13,7 @@ module.exports = {
     alias: {
       resources: path.resolve(__dirname, "src/App/resources"),
     },
-    extensions: ["*", ".js", ".jsx"],
+    extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
   },
   devServer: {
     historyApiFallback: true,
@@ -36,6 +36,15 @@ module.exports = {
         use: ["babel-loader"],
       },
       {
+        test: /\.(ts|tsx)$/,
+        loader: "awesome-typescript-loader",
+      },
+      {
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"],
+      },
+      {
         test: /\.s[ac]ss$/i,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
@@ -49,6 +58,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),
-    // new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin({
+    //   analyzerPort: 4000,
+    //   openAnalyzer: true,
+    // }),
   ],
 };

@@ -5,6 +5,7 @@ import {
   LineChartOutlined,
   DatabaseOutlined,
   SettingOutlined,
+  BarsOutlined,
 } from "@ant-design/icons";
 
 const BottomNavigation = () => {
@@ -12,8 +13,14 @@ const BottomNavigation = () => {
     <div className={"bottom-navigation"}>
       <Link to="/">
         <div className={"bottom-navigation-item"}>
-          <HomeOutlined />
+          <BarsOutlined />
           <div>Главная</div>
+        </div>
+      </Link>
+      <Link to="/bath">
+        <div className={"bottom-navigation-item"}>
+          <HomeOutlined />
+          <div>Баня</div>
         </div>
       </Link>
       <Link to="/statistics">
